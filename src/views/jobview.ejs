@@ -1,0 +1,126 @@
+<div class="container-fluid my-2 style="height: 200%">
+    <div class="card mb-3"> 
+      <div class="card-body align-items-centre">
+        <h1 class="text-center text-success" style="font-family: serif;">
+          <span class="text-danger" style="font-family: serif;"> <%=jobDetails.tech%> </span> 
+          opportunity
+          in <%=jobDetails.address%> at
+          <span class="text-info" style="font-family: serif;"> <%=jobDetails.name%></span>
+        </h1>
+        
+        <div class="actions d-flex align-items-centre justify-content-centre">
+          <span style="width: 160px" class="bg-warning bg-opacity-100 border border-success border border-success p-1 border-opacity-50 rounded">
+            Actively hiring<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up-arrow mx-2" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"></path></svg></span>
+
+          <%if(user){%>
+          <div class="action-right mx-2 px-2 mt-1">
+            <a href="/job/update/<%=jobDetails.id%>" class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path></svg></a>
+            <a class="text-danger" href="/job/delete/<%=jobDetails.id%>">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-x" viewBox="0 0 16 16">
+                <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"></path>
+                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+              </svg>
+            </a>
+          </div>
+          <%}%>
+        </div>
+  
+        <div class="container d-flex flex-column align-items-centre justify-content-start my-3">
+          <h5 class="my-1" style="font-family: serif;"><%=jobDetails.name%></h5>
+          <div>
+            <span style="font-family: serif;"><%=jobDetails.pp%></span>
+            <span class="text-success" style="font-family: serif;"> <%=jobDetails.tech%></span>
+          </div>
+          <div class="d-flex flex-column align-items-centre justify-content-start p-2">
+            <span class="" style="font-family: serif;">
+                <%=jobDetails.address%>
+            </span>
+            <span class="" style="font-family: serif;">
+              <%=jobDetails.salary%>
+            </span>
+            <span style="font-family: serif;">
+              Apply By <%=jobDetails.appliedBy%>
+            </span>
+            <span style="font-family: serif;">
+              Number of openings <%=jobDetails.noOA%></span>
+            <a style="text-decoration: none; color: rgb(215, 20, 85)" href="applicants/<%=jobDetails.id%>" style="font-family: serif;">
+              <span style="font-family: serif;">
+                Applicants <%=applicantCount%></span>
+            </a>
+          </div>
+  
+          <div class="container">
+            <div class="skills p-1">
+              <% jobDetails.skills.forEach(jobDetail=>{%>
+
+              
+              <button class="btn btn-sm btn-outline-info"><%=jobDetail%></button>
+            <%})%>
+            </div>
+            <button data-bs-toggle="modal" data-bs-target="#applyModal" class="btn btn-md btn-primary px-5 my-2">
+              Apply Now
+            </button>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">easily</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container p-3 mx-auto w-75 form-box my-5 rounded-md">
+                <h4 style="color: #181642" class="text-center mb-3">
+                  apply in less than 1 minute
+                </h4>
+                <form action="/apply/<%=jobDetails.id%>" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="id", value="<%=jobDetails.id%>">
+                  <input type="hidden" name="jobName", value="<%=jobDetails.name%>">
+                  <div class="mb-3">
+                    <div class="input-group">
+                      <span class="input-group-text">Name</span>
+                      <input required="" name="name" type="text" aria-label="First name" class="form-control" placeholder="enter your name">
+                    </div>
+                  </div>
+      
+                  <div class="mb-3">
+                    <div class="input-group">
+                      <span class="input-group-text">Email</span>
+                      <input required="" name="email" type="email" aria-label="email" class="form-control" placeholder="enter your email">
+                    </div>
+                  </div>
+      
+                  <div class="mb-3">
+                    <div class="input-group">
+                      <span class="input-group-text">Contact</span>
+                      <input required="" name="contact" type="tel" aria-label="First name" class="form-control" placeholder="+91 ____ __ ____">
+                    </div>
+                  </div>
+      
+                  <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01">Resume</label>
+                    <input name="resume" type="file" class="form-control" id="inputGroupFile01" accept="application/pdf" required="">
+                  </div>
+      
+                  <button class="w-100 mb-3 mt-2 btn btn-md btn-success" type="submit">
+                    Submit
+                  </button>
+                  
+                </form>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
